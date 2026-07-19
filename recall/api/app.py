@@ -3,6 +3,7 @@ from __future__ import annotations
 from pathlib import Path
 from collections import deque
 import asyncio
+import os
 import time
 
 from dotenv import load_dotenv
@@ -94,12 +95,12 @@ app = FastAPI(title="RECALL API", version="0.1.0")
 
 app.add_middleware(RateLimitMiddleware, max_per_minute=10)
 
+# Comma-separated list in the env var
+allowed_origins = os.getenv("ALLOWED_ORIGINS", "http://localhost:5173").split(",")
+
 app.add_middleware(
-  CORSMiddleware,
-  allow_origins=[
-        "https://recall-ui.pages.dev",       # your Cloudflare frontend
-        "http://localhost:5173",              # keep for local dev
-    ],
+    CORSMiddleware,
+    allow_origins=allowed_origins,
     allow_credentials=True,
     allow_methods=["GET", "POST", "OPTIONS"],            # don't allow "*" — be explicit
     allow_headers=["Content-Type", "Authorization"],
