@@ -1,0 +1,35 @@
+llm:
+  provider: openai        # openai | anthropic
+  reasoning_model: gpt-4o
+  fast_model: gpt-4o-mini
+  reasoning_model_max_tokens: 9000        # max output tokens per request
+  fast_model_max_tokens: 3000  # optional override for the small model
+
+memory:
+  db_path: .memory/memory.db
+  long_term_db_path: .memory/long_term.db
+  # Enable Postgres-backed persistence (uses DATABASE_URL env var only).
+  use_postgres: false
+  long_term_auto_save: true
+  # Optional: override project name used for auto-saved memories.
+  summarize_at_tokens: 8000
+  keep_last_messages: 30
+
+quiz:
+  max_questions_per_session: 20
+
+agent:
+  artifact_dir: .
+  # Safety limits to prevent runaway loops
+  model_call_run_limit: 10        # max LLM calls per invocation (null disables)
+  tool_call_run_limit: 40         # max tool calls per invocation (null disables)
+  model_call_exit_behavior: end   # end | error
+  tool_call_exit_behavior: continue  # continue | end | error
+
+scorecard:
+  # Promotion happens only when batch accuracy >= min_accuracy_to_level_up.
+  # Streak thresholds are per-current-level: beginner -> intermediate -> advanced.
+  min_accuracy_to_level_up: 0.99
+  beginner_max_attempts: 1
+  intermediate_max_attempts: 2
+

@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "recall-cli"
+version = "0.1.0"
+description = "Recall is an AI-powered revision platform.  that adapts to your level as you study. Instead of static question banks that waste time on things you've mastered or frustrate you with questions you're not ready for, Recall dynamically calibrates difficulty based on your answers — finding your exact learning edge and pushing it."
+authors = ["Vasavi"]
+packages = [{ include = "recall" }]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+langgraph-checkpoint-sqlite = "^3.1.0"
+python-dotenv = "^1.2.2"
+openai = "^2.44.0"
+rich = "^14.0.0"
+langchain = "^1.3.11"
+langchain-openai = "^1.3.3"
+fastapi = "^0.115.0"
+uvicorn = {version = "^0.30.0", extras = ["standard"]}
+numpy = "^2.0.0"
+psycopg = {version = "^3.2.0", extras = ["binary"]}
+
+[tool.poetry.scripts]
+recall-cli = "recall.main:main"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
