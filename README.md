@@ -1,5 +1,7 @@
 # RECALL — revise smarter, not longer
 
+[Project Demo Link](https://drive.google.com/file/d/1DnNd2fz-Bckn8T3oGLAug5VlSVdnxIjl/view?usp=drive_link)
+
 RECALL is a quiz-first learning assistant:
 - You give a topic (ex: “revise python, I’m intermediate”)
 - It parses topic + level, generates a batch of questions, judges your answers, and adapts difficulty
